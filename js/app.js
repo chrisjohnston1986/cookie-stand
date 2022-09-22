@@ -93,6 +93,7 @@ new CookieStore('Dubai', 11, 38, 3.7);
 new CookieStore('Paris', 20, 38, 2.3);
 new CookieStore('Lima', 2, 16, 4.6);
 
+
 function renderAll() {
   for (let i = 0; i < storeArr.length; i++) {
     storeArr[i].getSales();
@@ -100,8 +101,8 @@ function renderAll() {
   }
 }
 
-renderAll();
 
+renderAll();
 console.log(storeArr);
 
 // grabbed from MDN

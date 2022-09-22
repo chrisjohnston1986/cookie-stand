@@ -1,0 +1,97 @@
+header {
+  background-image: url('/img/seattle-skyline-silhouette.png'), url('/img/seattle-skyline-silhouette.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position-y: center;
+  background-position-x: left, right;
+  background-color: rgb(24, 65, 101);
+  border: 4px antiquewhite;
+  border-style: solid;
+  color: rgb(239, 94, 41);
+  font-family: 'Sacramento', cursive;
+  font-size: 80px;
+  text-align: center;
+}
+
+header h1 {
+  padding-top: .5em;
+}
+
+header img {
+  display: block;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  height: 150px;
+  width: 400px;
+}
+
+a {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  padding: .5rem;
+  margin: 2rem 45% 0;
+  border: 4px rgb(24, 65, 101);
+  border-style: solid;
+  background-color: antiquewhite;
+  color: rgb(24, 65, 101);
+  border-radius: 20px;
+}
+
+body {
+  font-size: 16px;
+  background-color: rgb(212, 213, 222);
+}
+
+main {
+  margin: auto;
+  padding: 3rem;
+  justify-content: space-evenly;
+}
+
+table {
+  border: 3px;
+  border-style: solid;
+  border-color: white;
+  margin: 0 auto;
+}
+
+th {
+  border: 3px;
+  border-style: solid;
+  min-width: 75px;
+  border-color: antiquewhite;
+  color: rgb(239, 94, 41);
+  margin: auto;
+  text-align: center;
+  background-color: antiquewhite;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+td {
+  border: 3px;
+  border-style: solid;
+  text-align: center;
+  border-color: white;
+  padding: .5rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+footer {
+  display: block;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  background-color: rgb(24, 65, 101);
+  border: 4px antiquewhite;
+  border-style: solid;
+  color: rgb(239, 94, 41);
+  text-align: center;
+}
