@@ -8,6 +8,8 @@ let dailyHours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', 
 
 console.dir(locationSection);
 
+let storeForm = document.getElementById('storeForm');
+
 //constructor per store
 function CookieStore(name, minCust, maxCust, avgSales) {
   this.name = name;
@@ -60,7 +62,7 @@ CookieStore.prototype.render = function () {
 let articleElem = document.createElement('article');
 locationSection.appendChild(articleElem);
 
-let tableElem = document.createElement('Table');
+let tableElem = document.createElement('table');
 articleElem.appendChild(tableElem);
 
 let row1 = document.createElement('tr');
@@ -75,16 +77,18 @@ for (let i = 0; i < dailyHours.length; i++) {
   hourElem.textContent = `${dailyHours[i]}`;
   row1.appendChild(hourElem);
 }
+
 let wordTotal = document.createElement('th');
 wordTotal.textContent = ('Daily Location Total');
 row1.appendChild(wordTotal);
 
-let row3 = document.createElement('tfoot');
-tableElem.appendChild(row3);
+// let row3 = document.createElement('tfoot');
+// tableElem.appendChild(row3);
 
-let wordHTotal = document.createElement('th');
-wordHTotal.textContent = ('Hourly Location Totals');
-row3.appendChild(wordHTotal);
+// let wordHTotal = document.createElement('th');
+// wordHTotal.textContent = ('Hourly Location Totals');
+// row3.appendChild(wordHTotal);
+
 
 // (name, minCust, maxCust, avgSales)
 new CookieStore('Seattle', 23, 65, 6.3);
@@ -113,13 +117,70 @@ function randomSales(min, max) {
 //Table 11 Collaboration.
 
 
-for (let i = 0; i < dailyHours.length; i++) {
-  let hourlyTotal = 0;
-  for (let j = 0; j < storeArr.length; j++) {
-    hourlyTotal += storeArr[j].cookieTotals[i];
-    console.log(storeArr[j].cookieTotals[i]);
+// for (let i = 0; i < dailyHours.length; i++) {
+//   let hourlyTotal = 0;
+//   for (let j = 0; j < storeArr.length; j++) {
+//     hourlyTotal += storeArr[j].cookieTotals[i];
+//     console.log(storeArr[j].cookieTotals[i]);
+//   }
+//   let hTotal = document.createElement('td');
+//   hTotal.textContent = hourlyTotal;
+//   row3.appendChild(hTotal);
+
+// }
+
+function makeTotalsRow() {
+
+  let tableFoot = document.createElement('tfoot');
+  document.querySelector('table').appendChild(tableFoot);
+  let row3 = document.createElement('tr');
+  let tableFooter = document.createElement('th');
+  tableFooter.innerText = 'Hourly Totals for All Stores';
+  row3.appendChild(tableFooter);
+
+  let totalTotal = 0;
+  for (let i = 0; i < dailyHours.length; i++) {
+    let hourlyTotal = 0;
+    for (let j = 0; j < storeArr.length; j++) {
+      hourlyTotal += storeArr[j].cookieTotals[i];
+      totalTotal += storeArr[j].cookieTotals[i];
+    }
+    let tableF = document.createElement('td');
+    tableF.innerText = hourlyTotal;
+    row3.appendChild(tableF);
   }
-  let hTotal = document.createElement('td');
-  hTotal.textContent = hourlyTotal;
-  row3.appendChild(hTotal);
+  let tableFoo = document.createElement('td');
+  tableFoo.innerText = totalTotal;
+  row3.appendChild(tableFoo);
+  tableFoot.appendChild(row3);
+  console.log(totalTotal);
 }
+
+makeTotalsRow();
+
+function addNewCookieShop(event) {
+  event.preventDefault();
+
+  let storeForm = event.target;
+
+  let name = storeForm.name.value;
+  let minCust = parseInt(storeForm['minCust'].value);
+  let maxCust = parseInt(storeForm['maxCust'].value);
+  let avgSales = parseFloat(storeForm['avgSales'].value);
+  console.log(name, minCust, maxCust, avgSales);
+
+  let newCookieShop = new CookieStore(name, minCust, maxCust, avgSales);
+
+  // newCookieShop.push(storeArr);
+
+  document.querySelector('table').deleteTFoot();
+
+  newCookieShop.getSales();
+  newCookieShop.render();
+  makeTotalsRow();
+  storeForm.reset();
+
+}
+
+storeForm.addEventListener('submit', addNewCookieShop);
+
